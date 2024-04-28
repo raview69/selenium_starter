@@ -35,11 +35,30 @@ sleep(10)
 # # driver.find_element('xpath', '//*[@id="server-side"]/div/div[2]/div[1]/div/div[4]/div[2]/form/div/div[2]/div[2]/div/button[1]').click()
 # print('finish')
 # sleep(20)
+j=0
 for i in range(0, position):
     while True:
           price = driver.find_element('xpath', '//*[@id="futuresOrderbook"]/div[3]/div[2]/div[1]').text
-          print(i)
-          if float(price) >= 7.210:
+          print("i", i)
+          if float(price) >= 7.180:
+              while j < 10000:
+                  price2 = driver.find_element('xpath', '//*[@id="futuresOrderbook"]/div[3]/div[2]/div[1]').text
+                  data.append(price2)
+                  print(data)
+                  print("j", j)
+                  if(len(data) > 1):
+                      #masih bug ketika habis cutloss/ clear array
+                      if(data[j - 1] > data[j]):
+                          print(colored('Price is decreasing', 'red'))
+                          data.clear()
+                          break
+                      if(data[j - 1] == data[j]):
+                          print(colored('Price is relatively stable', 'yellow'))
+                      if(data[j - 1] < data[j]):
+                          print(colored('Price is increasing', 'green'))
+                  j += 1
+                  sleep(5)
+               
               print('Price morethan', price)
               break
           else:
