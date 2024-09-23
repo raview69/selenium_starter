@@ -24,7 +24,7 @@ chromedriver_autoinstaller.install()
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option("useAutomationExtension", False)
-options.add_argument("--headless=new")
+# options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
 action = ActionChains(driver)
 url = "https://www.binance.com/en/futures/DOGSUSDT"
@@ -37,13 +37,16 @@ for i in datac:
     cookie_with_name_and_value = {"name": i["name"], "value": i["value"]}
     driver.add_cookie(cookie_with_name_and_value)
 
-sleep(10)
+sleep(5)
 driver.refresh()
+sleep(5)
+driver.execute_script("window.scrollTo(0, 150)")
 print("Success Login")
-sleep(10)
+
 now = datetime.now()
 print("Current Time =", now)
 
+# /html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[10]/div/div[1]/button[1]
 
 for i in range(0, position):
     print("open position ke", i)
@@ -241,10 +244,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         data.append("cutloss")
                                         cutloss = True
                                         type = ""
@@ -276,10 +284,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         data.append("cutloss")
                                         cutloss = True
                                         type = ""
@@ -292,13 +305,16 @@ for i in range(0, position):
                                     sleep(3)
 
                         elif data[j - 1] < data[j]:
+                            ## eror di closing order
                             print(colored("Price is increasing", "red"))
                             try:
                                 driver.find_element(
                                     "css selector",
                                     "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
                                 ).click()
+                                sleep(1)
                                 type = ""
+                                print("closed order click")
                             except:
                                 print("already closed")
                             data.clear()
@@ -323,10 +339,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         cutloss = True
                                         type = ""
                                         break
@@ -357,10 +378,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         data.append("cutloss")
                                         cutloss = True
                                         type = ""
@@ -391,10 +417,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         data.append("cutloss")
                                         cutloss = True
                                         type = ""
@@ -425,10 +456,15 @@ for i in range(0, position):
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
-                                        driver.find_element(
-                                            "css selector",
-                                            "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
-                                        ).click()
+                                        try:
+                                            driver.find_element(
+                                                "css selector",
+                                                "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
+                                            ).click()
+                                            print("click closed")
+                                            sleep(1)
+                                        except:
+                                            print("gagal click closed")
                                         cutloss = True
                                         type = ""
                                         break
@@ -438,15 +474,18 @@ for i in range(0, position):
                                 except:
                                     print("not called")
                                     sleep(1)
+
                         elif data[j - 1] > data[j]:
-                            # error disini
+                            # error disini cek lagi cok
                             print(colored("Price is decreasing", "red"))
                             try:
                                 driver.find_element(
                                     "css selector",
                                     "#position-pc > div > div.list-container.css-eaerhv > div.list-auto-sizer > div > div > div > div > div:nth-child(10) > div > div.flex.items-center.space-x-\[8px\].shrink-0.mr-\[8px\] > button.bn-button.bn-button__text.bn-button__text__yellow.data-size-tiny.\!min-w-0.w-\[40px\].truncate.inline-block.text-left.\!typography-caption0.\!px-0.\!min-w-0",
                                 ).click()
+                                sleep(1)
                                 type = ""
+                                print("closed order click")
                             except:
                                 print("already closed")
                             data.clear()
