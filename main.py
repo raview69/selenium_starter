@@ -27,7 +27,7 @@ options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
 action = ActionChains(driver)
-url = "https://www.binance.com/en/futures/WIFUSDT"
+url = "https://www.binance.com/en/futures/DOGSUSDT"
 driver.get(url)
 driver.maximize_window()
 
@@ -85,8 +85,7 @@ for i in range(0, position):
             "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[1]/div[2]/div",
         ).text
 
-        print(dataopen)
-        print(isOpenOrder, isOpenPosition)
+        print("trying to make position", len(dataopen))
 
         if len(dataopen) > 2 and isOpenPosition == "Positions(0)":
             # long
@@ -235,7 +234,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
@@ -267,7 +269,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
@@ -311,7 +316,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
@@ -342,7 +350,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
@@ -373,7 +384,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
@@ -404,7 +418,10 @@ for i in range(0, position):
                                         "xpath",
                                         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[9]/div/div[2]",
                                     ).text
-                                    print(precent)
+                                    if precent.find("+") == -1:
+                                        print(colored(precent, "red"))
+                                    else:
+                                        print(colored(precent, "green"))
                                     # bug disini
                                     if float(precent[1:-2]) < -3:
                                         print("closed")
