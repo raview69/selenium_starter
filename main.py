@@ -174,31 +174,31 @@ for i in range(0, position):
                 except:
                     print("failed to open order")
 
-        if isOpenOrder != "Open Orders(0)":
-            # chase order
-            try:
-                print("open order detected")
-                driver.find_element(
-                    "xpath",
-                    "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[1]/div[2]/div",
-                ).click()
-                sleep(1)
-                driver.find_element(
-                    "xpath",
-                    "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[2]/div/div/div/div/div[2]/div[3]/div[1]/div/div/div/div/div[13]/div/div/button",
-                ).click()
-                # sleep(1)
-                # driver.find_element(
-                #     "css selector",
-                #     "body > div.css-1u2pn8e > div.css-vra5kf > div.css-ikx47k > div.check-row.css-1m4hmg6 > div.css-jj3wml > svg",
-                # ).click()
-                # driver.find_element(
-                #     "xpath",
-                #     "/html/body/div[5]/div[1]/div[2]/button[2]",
-                # ).click()
+        # if isOpenOrder != "Open Orders(0)":
+        #     # chase order
+        #     try:
+        #         print("open order detected")
+        #         driver.find_element(
+        #             "xpath",
+        #             "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[1]/div[2]/div",
+        #         ).click()
+        #         sleep(1)
+        #         driver.find_element(
+        #             "xpath",
+        #             "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[2]/div/div/div/div/div[2]/div[3]/div[1]/div/div/div/div/div[13]/div/div/button",
+        #         ).click()
+        #         # sleep(1)
+        #         # driver.find_element(
+        #         #     "css selector",
+        #         #     "body > div.css-1u2pn8e > div.css-vra5kf > div.css-ikx47k > div.check-row.css-1m4hmg6 > div.css-jj3wml > svg",
+        #         # ).click()
+        #         # driver.find_element(
+        #         #     "xpath",
+        #         #     "/html/body/div[5]/div[1]/div[2]/button[2]",
+        #         # ).click()
 
-            except:
-                print("failed to chase order")
+        #     except:
+        #         print("failed to chase order")
 
         j = 0
         if isOpenPosition != "Positions(0)":
