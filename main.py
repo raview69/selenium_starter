@@ -7,11 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from termcolor import colored
-import time
 from datetime import datetime
 import chromedriver_autoinstaller
 import json
-import undetected_chromedriver as uc
 
 position = int(input("Enter how many open position: "))
 timeFrame = int(input("Enter time frame: "))
@@ -24,7 +22,7 @@ chromedriver_autoinstaller.install()
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option("useAutomationExtension", False)
-# options.add_argument("--headless=new")
+options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
 action = ActionChains(driver)
 url = "https://www.binance.com/en/futures/DOGSUSDT"
@@ -46,12 +44,10 @@ print("Success Login")
 now = datetime.now()
 print("Current Time =", now)
 
-# /html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[10]/div/div[1]/button[1]
-
 for i in range(0, position):
     print("open position ke", i)
     dataopen = []
-    type = ""
+    type = "long"
 
     # error di tutorial setelah sukses posisi pertama
     try:
@@ -224,6 +220,18 @@ for i in range(0, position):
                     print("cutloss called")
                     break
 
+                try:
+                    isLong = driver.find_element(
+                        "xpath",
+                        "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div[7]/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div[2]",
+                    ).text
+                    if isLong.find("-") == -1:
+                        type = "long"
+                    else:
+                        type = "short"
+                except:
+                    print("type already set")
+
                 if type == "short":
                     if len(data) > 0:
                         if len(data) == 1:
@@ -242,7 +250,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -282,7 +290,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -337,7 +345,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -376,7 +384,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -415,7 +423,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -454,7 +462,7 @@ for i in range(0, position):
                                     else:
                                         print(colored(precent, "green"))
                                     # bug disini
-                                    if float(precent[1:-2]) < -3:
+                                    if float(precent[1:-2]) < -4:
                                         print("closed")
                                         try:
                                             driver.find_element(
@@ -497,4 +505,4 @@ for i in range(0, position):
         else:
             print("Price is", price)
         sleep(3)
-    sleep(60)
+    sleep(30)
