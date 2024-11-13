@@ -16,6 +16,6 @@ options.add_experimental_option("useAutomationExtension", False)
 # options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
 action = ActionChains(driver)
-url = "https://www.binance.com/en/futures/WUSDT"
+url = "https://komikindo.dev/"
 driver.get(url)
 driver.maximize_window()
